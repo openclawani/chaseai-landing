@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChaseAI — Get Paid Faster. Automatically.</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0A0F1A; --bg-card: #111827; --primary: #F59E0B; --primary-dim: #D97706;
+            --accent: #3B82F6; --text: #F1F5F9; --text-sec: #94A3B8; --text-mut: #64748B;
+            --border: rgba(255,255,255,0.06); --radius: 12px;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; }
+        .container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+
+        .hero { padding: 120px 0 80px; text-align: center; }
+        .hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(2.5rem, 5vw, 3.5rem); font-weight: 700; letter-spacing: -1.5px; margin-bottom: 20px; }
+        .hero h1 span { background: linear-gradient(135deg, #F59E0B, #EF4444); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero p { color: var(--text-sec); font-size: 1.1rem; max-width: 500px; margin: 0 auto 32px; }
+        .btn { display: inline-flex; padding: 14px 32px; background: var(--primary); color: #0A0F1A; border: none; border-radius: 10px; font-weight: 700; font-size: 1rem; text-decoration: none; cursor: pointer; }
+        .btn:hover { background: var(--primary-dim); }
+
+        .pain { padding: 80px 0; }
+        .pain h2 { font-family: 'Space Grotesk', sans-serif; text-align: center; font-size: 2rem; margin-bottom: 40px; }
+        .pain-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+        .pain-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; text-align: center; }
+        .pain-card .emoji { font-size: 2rem; margin-bottom: 12px; }
+        .pain-card h3 { font-family: 'Space Grotesk', sans-serif; margin-bottom: 8px; }
+        .pain-card p { color: var(--text-sec); font-size: 0.85rem; }
+
+        .how { padding: 80px 0; background: rgba(255,255,255,0.02); }
+        .how h2 { font-family: 'Space Grotesk', sans-serif; text-align: center; font-size: 2rem; margin-bottom: 40px; }
+        .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .step { text-align: center; }
+        .step .num { font-family: 'Space Grotesk', sans-serif; font-size: 2rem; font-weight: 700; color: var(--primary); margin-bottom: 12px; }
+        .step h4 { font-family: 'Space Grotesk', sans-serif; margin-bottom: 8px; }
+        .step p { color: var(--text-sec); font-size: 0.85rem; }
+
+        .pricing { padding: 80px 0; text-align: center; }
+        .pricing h2 { font-family: 'Space Grotesk', sans-serif; font-size: 2rem; margin-bottom: 16px; }
+        .price-tag { font-family: 'Space Grotesk', sans-serif; font-size: 3.5rem; font-weight: 700; margin: 24px 0 8px; }
+        .price-tag small { font-size: 1rem; color: var(--text-mut); font-weight: 400; }
+        .pricing p { color: var(--text-sec); margin-bottom: 24px; }
+
+        footer { padding: 40px 0; border-top: 1px solid var(--border); text-align: center; color: var(--text-mut); font-size: 0.85rem; }
+
+        @media (max-width: 768px) {
+            .pain-grid, .steps { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <div class="container">
+            <h1>Stop chasing invoices.<br><span>Start getting paid.</span></h1>
+            <p>ChaseAI sends polite, persistent payment reminders so you don't have to. Set it up in 5 minutes. Get paid 40% faster.</p>
+            <a href="#pricing" class="btn">Start Free Trial →</a>
+        </div>
+    </section>
+
+    <section class="pain">
+        <div class="container">
+            <h2>The Problem</h2>
+            <div class="pain-grid">
+                <div class="pain-card">
+                    <div class="emoji">😰</div>
+                    <h3>Awkward to chase</h3>
+                    <p>Nobody likes being "that person" who follows up on money</p>
+                </div>
+                <div class="pain-card">
+                    <div class="emoji">⏰</div>
+                    <h3>Takes too long</h3>
+                    <p>30+ minutes per invoice just writing follow-up emails</p>
+                </div>
+                <div class="pain-card">
+                    <div class="emoji">💸</div>
+                    <h3>Money left behind</h3>
+                    <p>43% of freelancers have invoices 90+ days overdue</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="how">
+        <div class="container">
+            <h2>How It Works</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="num">1</div>
+                    <h4>Connect</h4>
+                    <p>Link your invoicing tool (Stripe, QuickBooks, or email)</p>
+                </div>
+                <div class="step">
+                    <div class="num">2</div>
+                    <h4>Configure</h4>
+                    <p>Set your tone (polite → firm) and timing (3, 7, 14, 30 days)</p>
+                </div>
+                <div class="step">
+                    <div class="num">3</div>
+                    <h4>Collect</h4>
+                    <p>ChaseAI sends reminders automatically. You get paid.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <h2>Simple Pricing</h2>
+            <div class="price-tag">$19 <small>/month</small></div>
+            <p>Unlimited invoices. Cancel anytime.</p>
+            <a href="mailto:chaseai@vrithlabs.com?subject=ChaseAI%20Beta%20Access" class="btn">Join Beta — Free for 30 days →</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>Built by VrithLabs · chaseai.vrithlabs.com</p>
+        </div>
+    </footer>
+</body>
+</html>
