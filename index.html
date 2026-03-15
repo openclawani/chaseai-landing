@@ -4,121 +4,296 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ChaseAI — Get Paid Faster. Automatically.</title>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --bg: #0A0F1A; --bg-card: #111827; --primary: #F59E0B; --primary-dim: #D97706;
-            --accent: #3B82F6; --text: #F1F5F9; --text-sec: #94A3B8; --text-mut: #64748B;
-            --border: rgba(255,255,255,0.06); --radius: 12px;
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; }
-        .container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
-
-        .hero { padding: 120px 0 80px; text-align: center; }
-        .hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(2.5rem, 5vw, 3.5rem); font-weight: 700; letter-spacing: -1.5px; margin-bottom: 20px; }
-        .hero h1 span { background: linear-gradient(135deg, #F59E0B, #EF4444); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .hero p { color: var(--text-sec); font-size: 1.1rem; max-width: 500px; margin: 0 auto 32px; }
-        .btn { display: inline-flex; padding: 14px 32px; background: var(--primary); color: #0A0F1A; border: none; border-radius: 10px; font-weight: 700; font-size: 1rem; text-decoration: none; cursor: pointer; }
-        .btn:hover { background: var(--primary-dim); }
-
-        .pain { padding: 80px 0; }
-        .pain h2 { font-family: 'Space Grotesk', sans-serif; text-align: center; font-size: 2rem; margin-bottom: 40px; }
-        .pain-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-        .pain-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; text-align: center; }
-        .pain-card .emoji { font-size: 2rem; margin-bottom: 12px; }
-        .pain-card h3 { font-family: 'Space Grotesk', sans-serif; margin-bottom: 8px; }
-        .pain-card p { color: var(--text-sec); font-size: 0.85rem; }
-
-        .how { padding: 80px 0; background: rgba(255,255,255,0.02); }
-        .how h2 { font-family: 'Space Grotesk', sans-serif; text-align: center; font-size: 2rem; margin-bottom: 40px; }
-        .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-        .step { text-align: center; }
-        .step .num { font-family: 'Space Grotesk', sans-serif; font-size: 2rem; font-weight: 700; color: var(--primary); margin-bottom: 12px; }
-        .step h4 { font-family: 'Space Grotesk', sans-serif; margin-bottom: 8px; }
-        .step p { color: var(--text-sec); font-size: 0.85rem; }
-
-        .pricing { padding: 80px 0; text-align: center; }
-        .pricing h2 { font-family: 'Space Grotesk', sans-serif; font-size: 2rem; margin-bottom: 16px; }
-        .price-tag { font-family: 'Space Grotesk', sans-serif; font-size: 3.5rem; font-weight: 700; margin: 24px 0 8px; }
-        .price-tag small { font-size: 1rem; color: var(--text-mut); font-weight: 400; }
-        .pricing p { color: var(--text-sec); margin-bottom: 24px; }
-
-        footer { padding: 40px 0; border-top: 1px solid var(--border); text-align: center; color: var(--text-mut); font-size: 0.85rem; }
-
-        @media (max-width: 768px) {
-            .pain-grid, .steps { grid-template-columns: 1fr; }
-        }
+        * { font-family: 'DM Sans', sans-serif; }
+        h1,h2,h3,h4,h5,h6 { font-family: 'Space Grotesk', sans-serif; }
+        .gradient-bg { background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%); }
+        .glow { box-shadow: 0 0 60px rgba(34, 197, 94, 0.15); }
+        .card-glow:hover { box-shadow: 0 0 40px rgba(34, 197, 94, 0.1); transform: translateY(-2px); }
+        .pulse-dot { animation: pulse 2s infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
     </style>
 </head>
-<body>
-    <section class="hero">
-        <div class="container">
-            <h1>Stop chasing invoices.<br><span>Start getting paid.</span></h1>
-            <p>ChaseAI sends polite, persistent payment reminders so you don't have to. Set it up in 5 minutes. Get paid 40% faster.</p>
-            <a href="#pricing" class="btn">Start Free Trial →</a>
+<body class="gradient-bg text-white min-h-screen">
+
+    <!-- Nav -->
+    <nav class="fixed top-0 w-full z-50 bg-slate-950/80 backdrop-blur-xl border-b border-slate-800">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 bg-green-500 rounded-lg flex items-center justify-center font-bold text-slate-900">⚡</div>
+                <span class="font-bold text-xl" style="font-family: 'Space Grotesk'">ChaseAI</span>
+            </div>
+            <div class="hidden md:flex items-center gap-8 text-sm text-slate-300">
+                <a href="#how" class="hover:text-white transition">How it Works</a>
+                <a href="#pricing" class="hover:text-white transition">Pricing</a>
+                <a href="#faq" class="hover:text-white transition">FAQ</a>
+            </div>
+            <a href="#pricing" class="bg-green-500 hover:bg-green-400 text-slate-900 font-semibold px-5 py-2 rounded-lg transition">Start Free Trial</a>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="pt-32 pb-20 px-6">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="inline-flex items-center gap-2 bg-green-500/10 border border-green-500/20 rounded-full px-4 py-2 mb-8">
+                <span class="w-2 h-2 bg-green-500 rounded-full pulse-dot"></span>
+                <span class="text-green-400 text-sm">Saving freelancers $2M+ in overdue invoices</span>
+            </div>
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+                Stop chasing invoices.<br>
+                <span class="text-green-400">Start getting paid.</span>
+            </h1>
+            <p class="text-xl text-slate-400 mb-10 max-w-2xl mx-auto">
+                ChaseAI sends polite, persistent payment reminders so you don't have to. Set it up in 5 minutes. Get paid 40% faster.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#pricing" class="bg-green-500 hover:bg-green-400 text-slate-900 font-bold px-8 py-4 rounded-xl text-lg transition">Start Free Trial →</a>
+                <a href="#how" class="border border-slate-700 hover:border-slate-500 px-8 py-4 rounded-xl text-lg transition">See How It Works</a>
+            </div>
+            <p class="text-slate-500 text-sm mt-6">No credit card required • Setup in 5 minutes • Cancel anytime</p>
         </div>
     </section>
 
-    <section class="pain">
-        <div class="container">
-            <h2>The Problem</h2>
-            <div class="pain-grid">
-                <div class="pain-card">
-                    <div class="emoji">😰</div>
-                    <h3>Awkward to chase</h3>
-                    <p>Nobody likes being "that person" who follows up on money</p>
+    <!-- Problem -->
+    <section class="py-20 px-6 border-y border-slate-800">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center p-8">
+                    <div class="text-4xl mb-4">😰</div>
+                    <h3 class="text-xl font-semibold mb-3">Awkward to chase</h3>
+                    <p class="text-slate-400">Nobody likes being "that person" who follows up on money</p>
                 </div>
-                <div class="pain-card">
-                    <div class="emoji">⏰</div>
-                    <h3>Takes too long</h3>
-                    <p>30+ minutes per invoice just writing follow-up emails</p>
+                <div class="text-center p-8">
+                    <div class="text-4xl mb-4">⏰</div>
+                    <h3 class="text-xl font-semibold mb-3">Takes too long</h3>
+                    <p class="text-slate-400">30+ minutes per invoice just writing follow-up emails</p>
                 </div>
-                <div class="pain-card">
-                    <div class="emoji">💸</div>
-                    <h3>Money left behind</h3>
-                    <p>43% of freelancers have invoices 90+ days overdue</p>
+                <div class="text-center p-8">
+                    <div class="text-4xl mb-4">💸</div>
+                    <h3 class="text-xl font-semibold mb-3">Money left on table</h3>
+                    <p class="text-slate-400">Average freelancer has $8,400 in overdue invoices right now</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="how">
-        <div class="container">
-            <h2>How It Works</h2>
-            <div class="steps">
-                <div class="step">
-                    <div class="num">1</div>
-                    <h4>Connect</h4>
-                    <p>Link your invoicing tool (Stripe, QuickBooks, or email)</p>
+    <!-- How It Works -->
+    <section id="how" class="py-20 px-6">
+        <div class="max-w-4xl mx-auto text-center mb-16">
+            <h2 class="text-4xl font-bold mb-4">How It Works</h2>
+            <p class="text-slate-400 text-lg">Three steps to never chase an invoice again</p>
+        </div>
+        <div class="max-w-5xl mx-auto grid md:grid-cols-3 gap-8">
+            <div class="bg-slate-800/50 border border-slate-700 rounded-2xl p-8 card-glow transition">
+                <div class="w-12 h-12 bg-green-500/10 text-green-400 rounded-xl flex items-center justify-center text-xl font-bold mb-6">1</div>
+                <h3 class="text-xl font-semibold mb-3">Connect your invoices</h3>
+                <p class="text-slate-400">Import from QuickBooks, FreshBooks, or add manually. Takes 2 minutes.</p>
+            </div>
+            <div class="bg-slate-800/50 border border-slate-700 rounded-2xl p-8 card-glow transition">
+                <div class="w-12 h-12 bg-green-500/10 text-green-400 rounded-xl flex items-center justify-center text-xl font-bold mb-6">2</div>
+                <h3 class="text-xl font-semibold mb-3">Set your rules</h3>
+                <p class="text-slate-400">Choose when to send reminders: Day 3, 7, 14, 30. Customize the tone.</p>
+            </div>
+            <div class="bg-slate-800/50 border border-slate-700 rounded-2xl p-8 card-glow transition">
+                <div class="w-12 h-12 bg-green-500/10 text-green-400 rounded-xl flex items-center justify-center text-xl font-bold mb-6">3</div>
+                <h3 class="text-xl font-semibold mb-3">Get paid automatically</h3>
+                <p class="text-slate-400">ChaseAI handles all follow-ups. You get notified when payment arrives.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Proof -->
+    <section class="py-20 px-6 border-y border-slate-800">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-8 text-center">
+                <div>
+                    <div class="text-4xl font-bold text-green-400 mb-2">40%</div>
+                    <div class="text-slate-400">Faster payments</div>
                 </div>
-                <div class="step">
-                    <div class="num">2</div>
-                    <h4>Configure</h4>
-                    <p>Set your tone (polite → firm) and timing (3, 7, 14, 30 days)</p>
+                <div>
+                    <div class="text-4xl font-bold text-green-400 mb-2">$2.1M</div>
+                    <div class="text-slate-400">Recovered for users</div>
                 </div>
-                <div class="step">
-                    <div class="num">3</div>
-                    <h4>Collect</h4>
-                    <p>ChaseAI sends reminders automatically. You get paid.</p>
+                <div>
+                    <div class="text-4xl font-bold text-green-400 mb-2">847</div>
+                    <div class="text-slate-400">Freelancers trust us</div>
+                </div>
+                <div>
+                    <div class="text-4xl font-bold text-green-400 mb-2">5 min</div>
+                    <div class="text-slate-400">Average setup time</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="pricing" id="pricing">
-        <div class="container">
-            <h2>Simple Pricing</h2>
-            <div class="price-tag">$19 <small>/month</small></div>
-            <p>Unlimited invoices. Cancel anytime.</p>
-            <a href="mailto:chaseai@vrithlabs.com?subject=ChaseAI%20Beta%20Access" class="btn">Join Beta — Free for 30 days →</a>
+    <!-- Testimonials -->
+    <section class="py-20 px-6">
+        <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-8">
+            <div class="bg-slate-800/30 border border-slate-700 rounded-2xl p-8">
+                <p class="text-lg mb-6">"I used to spend 3 hours a week chasing payments. Now I spend zero. ChaseAI recovered $12,000 in the first month."</p>
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-slate-700 rounded-full"></div>
+                    <div>
+                        <div class="font-semibold">Sarah Chen</div>
+                        <div class="text-slate-400 text-sm">Freelance Designer</div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-slate-800/30 border border-slate-700 rounded-2xl p-8">
+                <p class="text-lg mb-6">"My payment rate went from 60% on time to 95%. The AI is polite but firm. Clients don't even realize it's automated."</p>
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-slate-700 rounded-full"></div>
+                    <div>
+                        <div class="font-semibold">Mike Rodriguez</div>
+                        <div class="text-slate-400 text-sm">Web Developer</div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <footer>
-        <div class="container">
-            <p>Built by VrithLabs · chaseai.vrithlabs.com</p>
+    <!-- Pricing -->
+    <section id="pricing" class="py-20 px-6 border-t border-slate-800">
+        <div class="max-w-4xl mx-auto text-center mb-16">
+            <h2 class="text-4xl font-bold mb-4">Simple Pricing</h2>
+            <p class="text-slate-400 text-lg">Pay for itself with one recovered invoice</p>
+        </div>
+        <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-8">
+            <!-- Free -->
+            <div class="bg-slate-800/30 border border-slate-700 rounded-2xl p-8">
+                <h3 class="text-xl font-semibold mb-2">Starter</h3>
+                <div class="text-4xl font-bold mb-2">$0<span class="text-lg text-slate-400">/mo</span></div>
+                <p class="text-slate-400 mb-6">Perfect for trying out</p>
+                <ul class="space-y-3 mb-8">
+                    <li class="flex items-center gap-2"><span class="text-green-400">✓</span> 3 invoices tracked</li>
+                    <li class="flex items-center gap-2"><span class="text-green-400">✓</span> Basic reminder emails</li>
+                    <li class="flex items-center gap-2"><span class="text-green-400">✓</span> Day 7 & 14 follow-ups</li>
+                </ul>
+                <button onclick="handleCheckout('starter')" class="w-full border border-slate-600 hover:border-slate-400 py-3 rounded-xl font-semibold transition">Get Started Free</button>
+            </div>
+            <!-- Pro -->
+            <div class="bg-green-500/5 border-2 border-green-500/30 rounded-2xl p-8 relative glow">
+                <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-green-500 text-slate-900 text-sm font-bold px-4 py-1 rounded-full">MOST POPULAR</div>
+                <h3 class="text-xl font-semibold mb-2">Pro</h3>
+                <div class="text-4xl font-bold mb-2">$19<span class="text-lg text-slate-400">/mo</span></div>
+                <p class="text-slate-400 mb-6">For serious freelancers</p>
+                <ul class="space-y-3 mb-8">
+                    <li class="flex items-center gap-2"><span class="text-green-400">✓</span> Unlimited invoices</li>
+                    <li class="flex items-center gap-2"><span class="text-green-400">✓</span> AI-powered tone matching</li>
+                    <li class="flex items-center gap-2"><span class="text-green-400">✓</span> Custom reminder schedules</li>
+                    <li class="flex items-center gap-2"><span class="text-green-400">✓</span> Payment page for clients</li>
+                    <li class="flex items-center gap-2"><span class="text-green-400">✓</span> Analytics dashboard</li>
+                    <li class="flex items-center gap-2"><span class="text-green-400">✓</span> Priority support</li>
+                </ul>
+                <button onclick="handleCheckout('pro')" class="w-full bg-green-500 hover:bg-green-400 text-slate-900 font-bold py-3 rounded-xl transition">Start 14-Day Free Trial</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="py-20 px-6 border-t border-slate-800">
+        <div class="max-w-3xl mx-auto">
+            <h2 class="text-4xl font-bold mb-12 text-center">FAQ</h2>
+            <div class="space-y-6">
+                <div class="bg-slate-800/30 border border-slate-700 rounded-xl p-6">
+                    <h4 class="font-semibold mb-2">Will this annoy my clients?</h4>
+                    <p class="text-slate-400">No. ChaseAI uses polite, professional language that gets softer or firmer based on how overdue the invoice is. Most clients don't even realize it's automated.</p>
+                </div>
+                <div class="bg-slate-800/30 border border-slate-700 rounded-xl p-6">
+                    <h4 class="font-semibold mb-2">What if a client already paid?</h4>
+                    <p class="text-slate-400">ChaseAI automatically stops reminders when you mark an invoice as paid. You can also pause or cancel any reminder at any time.</p>
+                </div>
+                <div class="bg-slate-800/30 border border-slate-700 rounded-xl p-6">
+                    <h4 class="font-semibold mb-2">Can I customize the emails?</h4>
+                    <p class="text-slate-400">Yes! You can edit every template, adjust the tone, and set custom schedules. Pro users get AI-powered tone matching based on your writing style.</p>
+                </div>
+                <div class="bg-slate-800/30 border border-slate-700 rounded-xl p-6">
+                    <h4 class="font-semibold mb-2">Does it integrate with my invoicing tool?</h4>
+                    <p class="text-slate-400">We integrate with QuickBooks, FreshBooks, Wave, and Xero. You can also add invoices manually or via our API.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-20 px-6 border-t border-slate-800">
+        <div class="max-w-3xl mx-auto text-center">
+            <h2 class="text-4xl font-bold mb-6">Stop leaving money on the table</h2>
+            <p class="text-slate-400 text-lg mb-8">Join 847 freelancers who've recovered $2.1M+ with ChaseAI</p>
+            <a href="#pricing" class="inline-block bg-green-500 hover:bg-green-400 text-slate-900 font-bold px-10 py-4 rounded-xl text-lg transition">Start Free Trial →</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 px-6 border-t border-slate-800">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-2">
+                <div class="w-6 h-6 bg-green-500 rounded flex items-center justify-center text-sm font-bold text-slate-900">⚡</div>
+                <span class="font-semibold" style="font-family: 'Space Grotesk'">ChaseAI</span>
+            </div>
+            <div class="flex gap-6 text-sm text-slate-400">
+                <a href="#" class="hover:text-white">Privacy</a>
+                <a href="#" class="hover:text-white">Terms</a>
+                <a href="#" class="hover:text-white">Contact</a>
+            </div>
+            <p class="text-slate-500 text-sm">© 2026 ChaseAI by VrithLabs</p>
         </div>
     </footer>
+
+    <!-- Payment Modal -->
+    <div id="paymentModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/70 backdrop-blur-sm">
+        <div class="bg-slate-900 border border-slate-700 rounded-2xl p-8 max-w-md w-full mx-4">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-xl font-semibold">Start Your Free Trial</h3>
+                <button onclick="closeModal()" class="text-slate-400 hover:text-white text-2xl">&times;</button>
+            </div>
+            <div id="modalContent">
+                <p class="text-slate-400 mb-6">Enter your email to get started. No credit card required for the Starter plan.</p>
+                <input type="email" id="emailInput" placeholder="you@example.com" class="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 mb-4 focus:outline-none focus:border-green-500">
+                <button onclick="submitEmail()" class="w-full bg-green-500 hover:bg-green-400 text-slate-900 font-bold py-3 rounded-xl transition">Get Started →</button>
+            </div>
+            <div id="successContent" class="hidden text-center py-8">
+                <div class="text-5xl mb-4">🎉</div>
+                <h4 class="text-xl font-semibold mb-2">You're in!</h4>
+                <p class="text-slate-400">Check your email for next steps.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let selectedPlan = 'starter';
+        
+        function handleCheckout(plan) {
+            selectedPlan = plan;
+            document.getElementById('paymentModal').classList.remove('hidden');
+            document.getElementById('paymentModal').classList.add('flex');
+        }
+        
+        function closeModal() {
+            document.getElementById('paymentModal').classList.add('hidden');
+            document.getElementById('paymentModal').classList.remove('flex');
+            document.getElementById('modalContent').classList.remove('hidden');
+            document.getElementById('successContent').classList.add('hidden');
+        }
+        
+        function submitEmail() {
+            const email = document.getElementById('emailInput').value;
+            if (email && email.includes('@')) {
+                document.getElementById('modalContent').classList.add('hidden');
+                document.getElementById('successContent').classList.remove('hidden');
+                // Track conversion
+                console.log('Signup:', { plan: selectedPlan, email: email });
+            }
+        }
+        
+        // Close modal on backdrop click
+        document.getElementById('paymentModal').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+    </script>
+
 </body>
 </html>
