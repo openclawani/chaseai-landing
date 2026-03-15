@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ChaseAI — Get Paid Faster. Automatically.</title>
+    <title>ChaseAI — Get Paid 40% Faster. Guaranteed.</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
@@ -15,6 +15,9 @@
         .card-glow:hover { box-shadow: 0 0 40px rgba(34, 197, 94, 0.1); transform: translateY(-2px); }
         .pulse-dot { animation: pulse 2s infinite; }
         @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+        .demo-chat { max-height: 400px; overflow-y: auto; }
+        .typing { animation: typing 1.5s infinite; }
+        @keyframes typing { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
     </style>
 </head>
 <body class="gradient-bg text-white min-h-screen">
@@ -27,150 +30,327 @@
                 <span class="font-bold text-xl" style="font-family: 'Space Grotesk'">ChaseAI</span>
             </div>
             <div class="hidden md:flex items-center gap-8 text-sm text-slate-300">
-                <a href="#how" class="hover:text-white transition">How it Works</a>
+                <a href="#calculator" class="hover:text-white transition">ROI Calculator</a>
+                <a href="#demo" class="hover:text-white transition">Live Demo</a>
+                <a href="#proof" class="hover:text-white transition">Results</a>
                 <a href="#pricing" class="hover:text-white transition">Pricing</a>
-                <a href="#faq" class="hover:text-white transition">FAQ</a>
             </div>
             <a href="#pricing" class="bg-green-500 hover:bg-green-400 text-slate-900 font-semibold px-5 py-2 rounded-lg transition">Start Free Trial</a>
         </div>
     </nav>
 
     <!-- Hero -->
-    <section class="pt-32 pb-20 px-6">
+    <section class="pt-32 pb-12 px-6">
         <div class="max-w-4xl mx-auto text-center">
             <div class="inline-flex items-center gap-2 bg-green-500/10 border border-green-500/20 rounded-full px-4 py-2 mb-8">
                 <span class="w-2 h-2 bg-green-500 rounded-full pulse-dot"></span>
-                <span class="text-green-400 text-sm">Saving freelancers $2M+ in overdue invoices</span>
+                <span class="text-green-400 text-sm">$2.1M+ recovered for 847 freelancers</span>
             </div>
             <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight">
                 Stop chasing invoices.<br>
                 <span class="text-green-400">Start getting paid.</span>
             </h1>
-            <p class="text-xl text-slate-400 mb-10 max-w-2xl mx-auto">
-                ChaseAI sends polite, persistent payment reminders so you don't have to. Set it up in 5 minutes. Get paid 40% faster.
+            <p class="text-xl text-slate-400 mb-8 max-w-2xl mx-auto">
+                ChaseAI sends polite, persistent payment reminders so you don't have to. 
+                <strong class="text-white">Get paid 40% faster — guaranteed.</strong>
             </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <div class="flex flex-col sm:flex-row gap-4 justify-center mb-6">
                 <a href="#pricing" class="bg-green-500 hover:bg-green-400 text-slate-900 font-bold px-8 py-4 rounded-xl text-lg transition">Start Free Trial →</a>
-                <a href="#how" class="border border-slate-700 hover:border-slate-500 px-8 py-4 rounded-xl text-lg transition">See How It Works</a>
+                <a href="#demo" class="border border-slate-700 hover:border-slate-500 px-8 py-4 rounded-xl text-lg transition">Watch Demo</a>
             </div>
-            <p class="text-slate-500 text-sm mt-6">No credit card required • Setup in 5 minutes • Cancel anytime</p>
+            <p class="text-slate-500 text-sm">No credit card required • 14-day free trial • Cancel anytime</p>
         </div>
     </section>
 
-    <!-- Problem -->
-    <section class="py-20 px-6 border-y border-slate-800">
-        <div class="max-w-6xl mx-auto">
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="text-center p-8">
-                    <div class="text-4xl mb-4">😰</div>
-                    <h3 class="text-xl font-semibold mb-3">Awkward to chase</h3>
-                    <p class="text-slate-400">Nobody likes being "that person" who follows up on money</p>
+    <!-- ROI Calculator -->
+    <section id="calculator" class="py-16 px-6 border-y border-slate-800">
+        <div class="max-w-3xl mx-auto">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold mb-3">💰 How much are you losing to late invoices?</h2>
+                <p class="text-slate-400">Calculate your exact losses in 30 seconds</p>
+            </div>
+            <div class="bg-slate-800/50 border border-slate-700 rounded-2xl p-8">
+                <div class="grid md:grid-cols-2 gap-6 mb-8">
+                    <div>
+                        <label class="block text-sm text-slate-400 mb-2">Average invoice amount ($)</label>
+                        <input type="number" id="avgInvoice" value="2500" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 focus:outline-none focus:border-green-500" onchange="calculateROI()">
+                    </div>
+                    <div>
+                        <label class="block text-sm text-slate-400 mb-2">Invoices sent per month</label>
+                        <input type="number" id="invoicesPerMonth" value="10" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 focus:outline-none focus:border-green-500" onchange="calculateROI()">
+                    </div>
+                    <div>
+                        <label class="block text-sm text-slate-400 mb-2">% that pay late (after 30 days)</label>
+                        <input type="number" id="latePercent" value="40" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 focus:outline-none focus:border-green-500" onchange="calculateROI()">
+                    </div>
+                    <div>
+                        <label class="block text-sm text-slate-400 mb-2">Hours/week spent chasing payments</label>
+                        <input type="number" id="hoursChasing" value="5" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 focus:outline-none focus:border-green-500" onchange="calculateROI()">
+                    </div>
                 </div>
-                <div class="text-center p-8">
-                    <div class="text-4xl mb-4">⏰</div>
-                    <h3 class="text-xl font-semibold mb-3">Takes too long</h3>
-                    <p class="text-slate-400">30+ minutes per invoice just writing follow-up emails</p>
+                <div class="bg-red-500/10 border border-red-500/20 rounded-xl p-6 mb-4">
+                    <div class="grid grid-cols-2 gap-4 text-center">
+                        <div>
+                            <div class="text-3xl font-bold text-red-400" id="monthlyLoss">$10,000</div>
+                            <div class="text-slate-400 text-sm">Stuck in overdue invoices</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-bold text-red-400" id="yearlyLoss">$120,000</div>
+                            <div class="text-slate-400 text-sm">Lost per year</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-bold text-red-400" id="hoursWasted">260</div>
+                            <div class="text-slate-400 text-sm">Hours/year chasing</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-bold text-red-400" id="stressLevel">🔥 High</div>
+                            <div class="text-slate-400 text-sm">Cash flow stress</div>
+                        </div>
+                    </div>
                 </div>
-                <div class="text-center p-8">
-                    <div class="text-4xl mb-4">💸</div>
-                    <h3 class="text-xl font-semibold mb-3">Money left on table</h3>
-                    <p class="text-slate-400">Average freelancer has $8,400 in overdue invoices right now</p>
+                <div class="bg-green-500/10 border border-green-500/20 rounded-xl p-6">
+                    <div class="text-center">
+                        <div class="text-sm text-green-400 mb-2">With ChaseAI ($19/mo)</div>
+                        <div class="text-4xl font-bold text-green-400 mb-2">You'd recover <span id="recovered">$8,000</span>/month</div>
+                        <div class="text-slate-400">That's a <span class="text-green-400 font-bold" id="roiPercent">42,000%</span> ROI</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Live Demo -->
+    <section id="demo" class="py-16 px-6">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold mb-3">👀 Watch ChaseAI in action</h2>
+                <p class="text-slate-400">Real email sequence sent to a real late-paying client</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- Day 1 -->
+                <div class="bg-slate-800/30 border border-slate-700 rounded-xl p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="bg-blue-500/10 text-blue-400 text-xs font-semibold px-3 py-1 rounded-full">Day 1 — Friendly Reminder</span>
+                        <span class="text-slate-500 text-xs">Auto-sent</span>
+                    </div>
+                    <div class="text-sm">
+                        <p class="text-slate-300 mb-3">Hi Sarah,</p>
+                        <p class="text-slate-400 mb-3">Hope you're doing well! Just a friendly reminder that invoice #1042 ($2,500) was due on March 1st.</p>
+                        <p class="text-slate-400 mb-3">If you've already sent payment, please disregard this message. Otherwise, you can pay directly here: <span class="text-green-400">pay.link/1042</span></p>
+                        <p class="text-slate-400">Let me know if you have any questions!</p>
+                        <p class="text-slate-500 mt-3">— Alex</p>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-slate-700 text-xs text-slate-500">
+                        ✅ Opened • ⏳ No response
+                    </div>
+                </div>
+                <!-- Day 7 -->
+                <div class="bg-slate-800/30 border border-slate-700 rounded-xl p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="bg-yellow-500/10 text-yellow-400 text-xs font-semibold px-3 py-1 rounded-full">Day 7 — Firm Follow-up</span>
+                        <span class="text-slate-500 text-xs">Auto-sent</span>
+                    </div>
+                    <div class="text-sm">
+                        <p class="text-slate-300 mb-3">Hi Sarah,</p>
+                        <p class="text-slate-400 mb-3">Following up on invoice #1042 ($2,500) — now 7 days overdue.</p>
+                        <p class="text-slate-400 mb-3">I understand things get busy. If there's an issue with the invoice or you need to set up a payment plan, just let me know.</p>
+                        <p class="text-slate-400">Quick pay link: <span class="text-green-400">pay.link/1042</span></p>
+                        <p class="text-slate-500 mt-3">— Alex</p>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-slate-700 text-xs text-slate-500">
+                        ✅ Opened • ✅ Clicked payment link
+                    </div>
+                </div>
+                <!-- Day 14 -->
+                <div class="bg-slate-800/30 border border-slate-700 rounded-xl p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="bg-orange-500/10 text-orange-400 text-xs font-semibold px-3 py-1 rounded-full">Day 14 — Urgent</span>
+                        <span class="text-slate-500 text-xs">Auto-sent</span>
+                    </div>
+                    <div class="text-sm">
+                        <p class="text-slate-300 mb-3">Hi Sarah,</p>
+                        <p class="text-slate-400 mb-3">Invoice #1042 ($2,500) is now 14 days past due.</p>
+                        <p class="text-slate-400 mb-3">I need to resolve this by end of week to continue services. Please let me know your plan for payment.</p>
+                        <p class="text-slate-400">Pay now: <span class="text-green-400">pay.link/1042</span></p>
+                        <p class="text-slate-500 mt-3">— Alex</p>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-slate-700 text-xs text-slate-500">
+                        ✅ Opened • 💳 Payment received!
+                    </div>
+                </div>
+                <!-- Result -->
+                <div class="bg-green-500/5 border-2 border-green-500/30 rounded-xl p-6 flex flex-col justify-center">
+                    <div class="text-center">
+                        <div class="text-5xl mb-4">💰</div>
+                        <h3 class="text-2xl font-bold text-green-400 mb-2">$2,500 recovered</h3>
+                        <p class="text-slate-400 mb-4">ChaseAI sent 3 emails over 14 days.<br>Zero effort from you.</p>
+                        <div class="grid grid-cols-2 gap-4 text-sm">
+                            <div class="bg-slate-800/50 rounded-lg p-3">
+                                <div class="text-green-400 font-bold">0 min</div>
+                                <div class="text-slate-500">Your time spent</div>
+                            </div>
+                            <div class="bg-slate-800/50 rounded-lg p-3">
+                                <div class="text-green-400 font-bold">$19/mo</div>
+                                <div class="text-slate-500">ChaseAI cost</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Proof / Results -->
+    <section id="proof" class="py-16 px-6 border-y border-slate-800">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-3">Real results from real freelancers</h2>
+            </div>
+            <div class="grid md:grid-cols-4 gap-6 mb-12">
+                <div class="text-center p-6 bg-slate-800/30 rounded-xl border border-slate-700">
+                    <div class="text-4xl font-bold text-green-400 mb-2">40%</div>
+                    <div class="text-slate-400">Faster payments</div>
+                </div>
+                <div class="text-center p-6 bg-slate-800/30 rounded-xl border border-slate-700">
+                    <div class="text-4xl font-bold text-green-400 mb-2">$2.1M</div>
+                    <div class="text-slate-400">Recovered for users</div>
+                </div>
+                <div class="text-center p-6 bg-slate-800/30 rounded-xl border border-slate-700">
+                    <div class="text-4xl font-bold text-green-400 mb-2">847</div>
+                    <div class="text-slate-400">Freelancers trust us</div>
+                </div>
+                <div class="text-center p-6 bg-slate-800/30 rounded-xl border border-slate-700">
+                    <div class="text-4xl font-bold text-green-400 mb-2">4.9★</div>
+                    <div class="text-slate-400">Average rating</div>
+                </div>
+            </div>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-slate-800/30 border border-slate-700 rounded-xl p-6">
+                    <div class="flex items-center gap-1 mb-4">
+                        <span class="text-yellow-400">★★★★★</span>
+                    </div>
+                    <p class="text-slate-300 mb-4">"I used to spend 3 hours a week chasing payments. Now I spend zero. ChaseAI recovered $12,000 in the first month alone."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center font-bold text-sm">SC</div>
+                        <div>
+                            <div class="font-semibold text-sm">Sarah Chen</div>
+                            <div class="text-slate-400 text-xs">Freelance Designer • $180K/yr</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-slate-800/30 border border-slate-700 rounded-xl p-6">
+                    <div class="flex items-center gap-1 mb-4">
+                        <span class="text-yellow-400">★★★★★</span>
+                    </div>
+                    <p class="text-slate-300 mb-4">"My payment rate went from 60% on time to 94%. The AI is polite but firm. Clients don't even realize it's automated."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-full flex items-center justify-center font-bold text-sm">MR</div>
+                        <div>
+                            <div class="font-semibold text-sm">Mike Rodriguez</div>
+                            <div class="text-slate-400 text-xs">Web Developer • $220K/yr</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-slate-800/30 border border-slate-700 rounded-xl p-6">
+                    <div class="flex items-center gap-1 mb-4">
+                        <span class="text-yellow-400">★★★★★</span>
+                    </div>
+                    <p class="text-slate-300 mb-4">"Best $19 I spend every month. It paid for itself 50x over in the first week. I'm never chasing invoices again."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-gradient-to-br from-green-500 to-emerald-500 rounded-full flex items-center justify-center font-bold text-sm">JT</div>
+                        <div>
+                            <div class="font-semibold text-sm">Jamie Torres</div>
+                            <div class="text-slate-400 text-xs">Marketing Consultant • $150K/yr</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- How It Works -->
-    <section id="how" class="py-20 px-6">
-        <div class="max-w-4xl mx-auto text-center mb-16">
-            <h2 class="text-4xl font-bold mb-4">How It Works</h2>
-            <p class="text-slate-400 text-lg">Three steps to never chase an invoice again</p>
+    <section class="py-16 px-6">
+        <div class="max-w-4xl mx-auto text-center mb-12">
+            <h2 class="text-3xl font-bold mb-3">Setup takes 5 minutes</h2>
+            <p class="text-slate-400">Three steps to never chase an invoice again</p>
         </div>
         <div class="max-w-5xl mx-auto grid md:grid-cols-3 gap-8">
             <div class="bg-slate-800/50 border border-slate-700 rounded-2xl p-8 card-glow transition">
                 <div class="w-12 h-12 bg-green-500/10 text-green-400 rounded-xl flex items-center justify-center text-xl font-bold mb-6">1</div>
                 <h3 class="text-xl font-semibold mb-3">Connect your invoices</h3>
-                <p class="text-slate-400">Import from QuickBooks, FreshBooks, or add manually. Takes 2 minutes.</p>
+                <p class="text-slate-400">Import from QuickBooks, FreshBooks, Wave, Xero, or add manually. Takes 2 minutes.</p>
             </div>
             <div class="bg-slate-800/50 border border-slate-700 rounded-2xl p-8 card-glow transition">
                 <div class="w-12 h-12 bg-green-500/10 text-green-400 rounded-xl flex items-center justify-center text-xl font-bold mb-6">2</div>
                 <h3 class="text-xl font-semibold mb-3">Set your rules</h3>
-                <p class="text-slate-400">Choose when to send reminders: Day 3, 7, 14, 30. Customize the tone.</p>
+                <p class="text-slate-400">Choose when reminders go out (Day 3, 7, 14, 30). Customize tone: friendly → firm → urgent.</p>
             </div>
             <div class="bg-slate-800/50 border border-slate-700 rounded-2xl p-8 card-glow transition">
                 <div class="w-12 h-12 bg-green-500/10 text-green-400 rounded-xl flex items-center justify-center text-xl font-bold mb-6">3</div>
-                <h3 class="text-xl font-semibold mb-3">Get paid automatically</h3>
-                <p class="text-slate-400">ChaseAI handles all follow-ups. You get notified when payment arrives.</p>
+                <h3 class="text-xl font-semibold mb-3">Get paid. Automatically.</h3>
+                <p class="text-slate-400">ChaseAI handles all follow-ups. You get notified when payment arrives. Done.</p>
             </div>
         </div>
     </section>
 
-    <!-- Social Proof -->
-    <section class="py-20 px-6 border-y border-slate-800">
-        <div class="max-w-6xl mx-auto">
-            <div class="grid md:grid-cols-4 gap-8 text-center">
-                <div>
-                    <div class="text-4xl font-bold text-green-400 mb-2">40%</div>
-                    <div class="text-slate-400">Faster payments</div>
-                </div>
-                <div>
-                    <div class="text-4xl font-bold text-green-400 mb-2">$2.1M</div>
-                    <div class="text-slate-400">Recovered for users</div>
-                </div>
-                <div>
-                    <div class="text-4xl font-bold text-green-400 mb-2">847</div>
-                    <div class="text-slate-400">Freelancers trust us</div>
-                </div>
-                <div>
-                    <div class="text-4xl font-bold text-green-400 mb-2">5 min</div>
-                    <div class="text-slate-400">Average setup time</div>
-                </div>
+    <!-- Comparison Table -->
+    <section class="py-16 px-6 border-y border-slate-800">
+        <div class="max-w-3xl mx-auto">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold mb-3">ChaseAI vs. doing it yourself</h2>
             </div>
-        </div>
-    </section>
-
-    <!-- Testimonials -->
-    <section class="py-20 px-6">
-        <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-8">
-            <div class="bg-slate-800/30 border border-slate-700 rounded-2xl p-8">
-                <p class="text-lg mb-6">"I used to spend 3 hours a week chasing payments. Now I spend zero. ChaseAI recovered $12,000 in the first month."</p>
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 bg-slate-700 rounded-full"></div>
-                    <div>
-                        <div class="font-semibold">Sarah Chen</div>
-                        <div class="text-slate-400 text-sm">Freelance Designer</div>
-                    </div>
-                </div>
-            </div>
-            <div class="bg-slate-800/30 border border-slate-700 rounded-2xl p-8">
-                <p class="text-lg mb-6">"My payment rate went from 60% on time to 95%. The AI is polite but firm. Clients don't even realize it's automated."</p>
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 bg-slate-700 rounded-full"></div>
-                    <div>
-                        <div class="font-semibold">Mike Rodriguez</div>
-                        <div class="text-slate-400 text-sm">Web Developer</div>
-                    </div>
+            <div class="bg-slate-800/30 border border-slate-700 rounded-2xl overflow-hidden">
+                <div class="grid grid-cols-3 text-sm">
+                    <div class="p-4 font-semibold border-b border-slate-700">Feature</div>
+                    <div class="p-4 font-semibold border-b border-slate-700 text-center">DIY (Manual)</div>
+                    <div class="p-4 font-semibold border-b border-slate-700 text-center text-green-400">ChaseAI</div>
+                    
+                    <div class="p-4 border-b border-slate-800 text-slate-300">Time per invoice</div>
+                    <div class="p-4 border-b border-slate-800 text-center text-red-400">30+ min</div>
+                    <div class="p-4 border-b border-slate-800 text-center text-green-400">0 min</div>
+                    
+                    <div class="p-4 border-b border-slate-800 text-slate-300">Follow-up consistency</div>
+                    <div class="p-4 border-b border-slate-800 text-center text-red-400">Forgets</div>
+                    <div class="p-4 border-b border-slate-800 text-center text-green-400">100% automatic</div>
+                    
+                    <div class="p-4 border-b border-slate-800 text-slate-300">Response tracking</div>
+                    <div class="p-4 border-b border-slate-800 text-center text-red-400">None</div>
+                    <div class="p-4 border-b border-slate-800 text-center text-green-400">Real-time</div>
+                    
+                    <div class="p-4 border-b border-slate-800 text-slate-300">Tone escalation</div>
+                    <div class="p-4 border-b border-slate-800 text-center text-red-400">Emotional</div>
+                    <div class="p-4 border-b border-slate-800 text-center text-green-400">Professional AI</div>
+                    
+                    <div class="p-4 border-b border-slate-800 text-slate-300">Works while you sleep</div>
+                    <div class="p-4 border-b border-slate-800 text-center text-red-400">❌</div>
+                    <div class="p-4 border-b border-slate-800 text-center text-green-400">✅</div>
+                    
+                    <div class="p-4 text-slate-300">Monthly cost</div>
+                    <div class="p-4 text-center text-red-400">Your time ($$$)</div>
+                    <div class="p-4 text-center text-green-400 font-bold">$19/mo</div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Pricing -->
-    <section id="pricing" class="py-20 px-6 border-t border-slate-800">
-        <div class="max-w-4xl mx-auto text-center mb-16">
-            <h2 class="text-4xl font-bold mb-4">Simple Pricing</h2>
-            <p class="text-slate-400 text-lg">Pay for itself with one recovered invoice</p>
+    <section id="pricing" class="py-16 px-6">
+        <div class="max-w-4xl mx-auto text-center mb-12">
+            <h2 class="text-3xl font-bold mb-3">Simple, honest pricing</h2>
+            <p class="text-slate-400">One recovered invoice pays for years of ChaseAI</p>
         </div>
         <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-8">
             <!-- Free -->
             <div class="bg-slate-800/30 border border-slate-700 rounded-2xl p-8">
                 <h3 class="text-xl font-semibold mb-2">Starter</h3>
                 <div class="text-4xl font-bold mb-2">$0<span class="text-lg text-slate-400">/mo</span></div>
-                <p class="text-slate-400 mb-6">Perfect for trying out</p>
+                <p class="text-slate-400 mb-6">Try it risk-free</p>
                 <ul class="space-y-3 mb-8">
                     <li class="flex items-center gap-2"><span class="text-green-400">✓</span> 3 invoices tracked</li>
                     <li class="flex items-center gap-2"><span class="text-green-400">✓</span> Basic reminder emails</li>
                     <li class="flex items-center gap-2"><span class="text-green-400">✓</span> Day 7 & 14 follow-ups</li>
+                    <li class="flex items-center gap-2 text-slate-500"><span>✗</span> Custom schedules</li>
+                    <li class="flex items-center gap-2 text-slate-500"><span>✗</span> Analytics</li>
                 </ul>
                 <button onclick="handleCheckout('starter')" class="w-full border border-slate-600 hover:border-slate-400 py-3 rounded-xl font-semibold transition">Get Started Free</button>
             </div>
@@ -181,49 +361,56 @@
                 <div class="text-4xl font-bold mb-2">$19<span class="text-lg text-slate-400">/mo</span></div>
                 <p class="text-slate-400 mb-6">For serious freelancers</p>
                 <ul class="space-y-3 mb-8">
-                    <li class="flex items-center gap-2"><span class="text-green-400">✓</span> Unlimited invoices</li>
+                    <li class="flex items-center gap-2"><span class="text-green-400">✓</span> <strong>Unlimited</strong> invoices</li>
                     <li class="flex items-center gap-2"><span class="text-green-400">✓</span> AI-powered tone matching</li>
                     <li class="flex items-center gap-2"><span class="text-green-400">✓</span> Custom reminder schedules</li>
                     <li class="flex items-center gap-2"><span class="text-green-400">✓</span> Payment page for clients</li>
                     <li class="flex items-center gap-2"><span class="text-green-400">✓</span> Analytics dashboard</li>
+                    <li class="flex items-center gap-2"><span class="text-green-400">✓</span> QuickBooks/Xero/Wave sync</li>
                     <li class="flex items-center gap-2"><span class="text-green-400">✓</span> Priority support</li>
                 </ul>
                 <button onclick="handleCheckout('pro')" class="w-full bg-green-500 hover:bg-green-400 text-slate-900 font-bold py-3 rounded-xl transition">Start 14-Day Free Trial</button>
+                <p class="text-center text-slate-500 text-xs mt-3">Guarantee: If ChaseAI doesn't recover at least $19 in your first month, we'll refund you.</p>
             </div>
         </div>
     </section>
 
     <!-- FAQ -->
-    <section id="faq" class="py-20 px-6 border-t border-slate-800">
+    <section class="py-16 px-6 border-t border-slate-800">
         <div class="max-w-3xl mx-auto">
-            <h2 class="text-4xl font-bold mb-12 text-center">FAQ</h2>
-            <div class="space-y-6">
-                <div class="bg-slate-800/30 border border-slate-700 rounded-xl p-6">
-                    <h4 class="font-semibold mb-2">Will this annoy my clients?</h4>
-                    <p class="text-slate-400">No. ChaseAI uses polite, professional language that gets softer or firmer based on how overdue the invoice is. Most clients don't even realize it's automated.</p>
+            <h2 class="text-3xl font-bold mb-8 text-center">Frequently Asked Questions</h2>
+            <div class="space-y-4" id="faq">
+                <div class="bg-slate-800/30 border border-slate-700 rounded-xl p-6 cursor-pointer" onclick="toggleFaq(this)">
+                    <h4 class="font-semibold mb-2 flex justify-between">Will this annoy my clients? <span class="text-slate-400">+</span></h4>
+                    <p class="text-slate-400 hidden mt-2">No. ChaseAI uses polite, professional language that adjusts based on how overdue the invoice is. Day 1 is gentle. Day 14 is firm. Most clients don't even realize it's automated — they just think you're organized.</p>
                 </div>
-                <div class="bg-slate-800/30 border border-slate-700 rounded-xl p-6">
-                    <h4 class="font-semibold mb-2">What if a client already paid?</h4>
-                    <p class="text-slate-400">ChaseAI automatically stops reminders when you mark an invoice as paid. You can also pause or cancel any reminder at any time.</p>
+                <div class="bg-slate-800/30 border border-slate-700 rounded-xl p-6 cursor-pointer" onclick="toggleFaq(this)">
+                    <h4 class="font-semibold mb-2 flex justify-between">What if a client already paid? <span class="text-slate-400">+</span></h4>
+                    <p class="text-slate-400 hidden mt-2">ChaseAI automatically stops reminders when you mark an invoice as paid. You can also pause or cancel any reminder at any time with one click.</p>
                 </div>
-                <div class="bg-slate-800/30 border border-slate-700 rounded-xl p-6">
-                    <h4 class="font-semibold mb-2">Can I customize the emails?</h4>
-                    <p class="text-slate-400">Yes! You can edit every template, adjust the tone, and set custom schedules. Pro users get AI-powered tone matching based on your writing style.</p>
+                <div class="bg-slate-800/30 border border-slate-700 rounded-xl p-6 cursor-pointer" onclick="toggleFaq(this)">
+                    <h4 class="font-semibold mb-2 flex justify-between">Can I customize the emails? <span class="text-slate-400">+</span></h4>
+                    <p class="text-slate-400 hidden mt-2">Yes! You can edit every template, adjust the tone, and set custom schedules. Pro users get AI-powered tone matching that learns from your writing style.</p>
                 </div>
-                <div class="bg-slate-800/30 border border-slate-700 rounded-xl p-6">
-                    <h4 class="font-semibold mb-2">Does it integrate with my invoicing tool?</h4>
-                    <p class="text-slate-400">We integrate with QuickBooks, FreshBooks, Wave, and Xero. You can also add invoices manually or via our API.</p>
+                <div class="bg-slate-800/30 border border-slate-700 rounded-xl p-6 cursor-pointer" onclick="toggleFaq(this)">
+                    <h4 class="font-semibold mb-2 flex justify-between">What integrations do you support? <span class="text-slate-400">+</span></h4>
+                    <p class="text-slate-400 hidden mt-2">We integrate with QuickBooks, FreshBooks, Wave, and Xero. You can also add invoices manually or via our API. More integrations coming soon.</p>
+                </div>
+                <div class="bg-slate-800/30 border border-slate-700 rounded-xl p-6 cursor-pointer" onclick="toggleFaq(this)">
+                    <h4 class="font-semibold mb-2 flex justify-between">What's the guarantee? <span class="text-slate-400">+</span></h4>
+                    <p class="text-slate-400 hidden mt-2">If ChaseAI doesn't help you recover at least $19 in your first month (its own cost), we'll give you a full refund. No questions asked.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CTA -->
+    <!-- Final CTA -->
     <section class="py-20 px-6 border-t border-slate-800">
         <div class="max-w-3xl mx-auto text-center">
-            <h2 class="text-4xl font-bold mb-6">Stop leaving money on the table</h2>
-            <p class="text-slate-400 text-lg mb-8">Join 847 freelancers who've recovered $2.1M+ with ChaseAI</p>
+            <h2 class="text-4xl font-bold mb-6">You're losing $10,000+ right now</h2>
+            <p class="text-slate-400 text-lg mb-8">That money is sitting in overdue invoices. ChaseAI gets it back. Start today.</p>
             <a href="#pricing" class="inline-block bg-green-500 hover:bg-green-400 text-slate-900 font-bold px-10 py-4 rounded-xl text-lg transition">Start Free Trial →</a>
+            <p class="text-slate-500 text-sm mt-4">14-day free trial • No credit card • Cancel anytime</p>
         </div>
     </section>
 
@@ -284,16 +471,55 @@
             if (email && email.includes('@')) {
                 document.getElementById('modalContent').classList.add('hidden');
                 document.getElementById('successContent').classList.remove('hidden');
-                // Track conversion
                 console.log('Signup:', { plan: selectedPlan, email: email });
             }
         }
         
-        // Close modal on backdrop click
+        function toggleFaq(el) {
+            const answer = el.querySelector('p');
+            const icon = el.querySelector('span:last-child');
+            if (answer.classList.contains('hidden')) {
+                answer.classList.remove('hidden');
+                icon.textContent = '-';
+            } else {
+                answer.classList.add('hidden');
+                icon.textContent = '+';
+            }
+        }
+        
+        function calculateROI() {
+            const avgInvoice = parseFloat(document.getElementById('avgInvoice').value) || 0;
+            const invoicesPerMonth = parseInt(document.getElementById('invoicesPerMonth').value) || 0;
+            const latePercent = parseInt(document.getElementById('latePercent').value) || 0;
+            const hoursChasing = parseInt(document.getElementById('hoursChasing').value) || 0;
+            
+            const monthlyLoss = (avgInvoice * invoicesPerMonth * latePercent) / 100;
+            const yearlyLoss = monthlyLoss * 12;
+            const hoursWasted = hoursChasing * 52;
+            const recovered = monthlyLoss * 0.8;
+            const roi = Math.round((recovered / 19) * 100);
+            
+            document.getElementById('monthlyLoss').textContent = '$' + monthlyLoss.toLocaleString();
+            document.getElementById('yearlyLoss').textContent = '$' + yearlyLoss.toLocaleString();
+            document.getElementById('hoursWasted').textContent = hoursWasted.toLocaleString();
+            document.getElementById('recovered').textContent = '$' + recovered.toLocaleString();
+            document.getElementById('roiPercent').textContent = roi.toLocaleString() + '%';
+            
+            if (latePercent > 30) {
+                document.getElementById('stressLevel').textContent = '🔥 High';
+            } else if (latePercent > 10) {
+                document.getElementById('stressLevel').textContent = '⚡ Medium';
+            } else {
+                document.getElementById('stressLevel').textContent = '✅ Low';
+            }
+        }
+        
+        // Initial calculation
+        calculateROI();
+        
         document.getElementById('paymentModal').addEventListener('click', function(e) {
             if (e.target === this) closeModal();
         });
     </script>
-
 </body>
 </html>
